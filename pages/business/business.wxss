@@ -1,0 +1,8 @@
+.propagate-content{ margin-bottom: 80rpx; width: 100%; }
+.propagate-item{ width: 100%; }
+.propagate-item image{ display: block; width: 100%; }
+.consult{ position: fixed; bottom: 0; left: 0; width: 100%; height: 80rpx; text-align: center; line-height: 80rpx; background: #ff2b2d; color: #fff; }
+.scan-code{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; }
+.shadow{ position: absolute; top: 0; left: 0; z-index: 10; width: 100%; height: 100%; background: #000; opacity: 0.6; }
+.code{ position: absolute; top: 260rpx; left: 245rpx; z-index: 100; width: 260rpx; height: 260rpx; }
+.code image{ display: block; width: 100%; height: 100%; }

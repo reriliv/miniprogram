@@ -1,0 +1,26 @@
+<template name='searchBar'>
+  <view class="top-search-bar">
+    <view class="search-background"><image mode='widthFix' src='../assets/tap-background.jpg'></image></view>
+    <!-- <navigator url='#' class='top-back'>
+      <span class='back-arrow'>
+        <span></span>
+        <span></span>
+      </span>
+      <text> 首页 </text>
+    </navigator> -->
+    <view class="search-bar">
+      <image mode='widthFix' src='../assets/sousuo.png'></image>
+      <input type="text"/>
+    </view>
+    <navigator url='../article/article' class='top-msg'>
+      <image mode='widthFix' src='../assets/MSG.png'></image>
+    </navigator>
+  </view>
+</template>
+
+<template name='navItem'>
+  <navigator url='{{NavUrl}}' class='nav-item'>
+    <image mode='heightFix' src='{{ImgUrl}}'></image>
+    <text> {{NavName}} </text>
+  </navigator>
+</template>

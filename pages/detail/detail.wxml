@@ -1,0 +1,3 @@
+<block wx:if='{{redirect}}'>
+  <web-view src='https://m.xitieba.com/t/{{cardId}}'></web-view>
+</block>

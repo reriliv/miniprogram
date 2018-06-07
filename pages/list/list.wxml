@@ -1,0 +1,72 @@
+<import src='../templates/template.wxml' />
+
+<template is='searchBar'></template>
+
+<view class="banner">
+  <navigator url='#'><image mode='widthFix' src='../assets/banner15.jpg'></image></navigator>
+</view>
+
+<view class="card-nav-list">
+  <view class='{{currentPage == "all" ? "card-nav-item active" : "card-nav-item"}}' id='all' bindtap='changeCardList'> 全部 </view>
+  <view class='{{currentPage == "4" ? "card-nav-item active" : "card-nav-item"}}' id='4' bindtap='changeCardList'> 结婚请柬 </view>
+  <view class='{{currentPage == "5" ? "card-nav-item active" : "card-nav-item"}}' id='5' bindtap='changeCardList'> 生日请柬 </view>
+  <view class='{{currentPage == "6" ? "card-nav-item active" : "card-nav-item"}}' id='6' bindtap='changeCardList'> 商业邀请 </view>
+  <view class='{{currentPage == "7" ? "card-nav-item active" : "card-nav-item"}}' id='7' bindtap='changeCardList'> 节日祝福 </view>
+</view>
+
+<view class="card-sort">
+  <view class="sort-item" bindtap='showSortPanel'> 综合排序 <text class='iconfont icon-xiangxiajiantoushixin'></text></view>
+  <view class="sort-item" bindtap='showColorPanel'> 颜色筛选 <text class='iconfont icon-xiangxiajiantoushixin'></text></view>
+</view>
+
+<view class="sort-panel" wx:if='{{isShow}}'>
+  <view class="shadow" bindtap='closeSortPanel'></view>
+  <block wx:if='{{isSort}}'>
+    <view class="sort-list">
+      <view class="sort-child" bindtap='changeSort' id='default'> 综合排序 </view>
+      <view class="sort-child" bindtap='changeSort' id='default'> 最新推荐 </view>
+      <view class="sort-child" bindtap='changeSort' id='default'> 最受欢迎 </view>
+      <view class="sort-child" bindtap='changeSort' id='default'> 最新发布 </view>
+      <view class="sort-child" bindtap='changeSort' id='default'> 促销特价 </view>
+      <view class="sort-child" bindtap='changeSort' id='default'> 限时免费 </view>
+    </view>
+  </block>
+  <block wx:if='{{isColor}}'>
+    <view class="color-list">
+      <view class="color-item" style='background-color: #ffffff;' bindtap='changeColor'></view>
+      <view class="color-item" style='background-color: #9b9b9b;' bindtap='changeColor'></view>
+      <view class="color-item" style='background-color: #000000;' bindtap='changeColor'></view>
+      <view class="color-item" style='background-color: #0f67ff;' bindtap='changeColor'></view>
+      <view class="color-item" style='background-color: #1e00fb;' bindtap='changeColor'></view>
+      <view class="color-item" style='background-color: #0dd1ff;' bindtap='changeColor'></view>
+      <view class="color-item" style='background-color: #7000fb;' bindtap='changeColor'></view>
+      <view class="color-item" style='background-color: #dd1690;' bindtap='changeColor'></view>
+      <view class="color-item" style='background-color: #ff3d05;' bindtap='changeColor'></view>
+      <view class="color-item" style='background-color: #ff9e0a;' bindtap='changeColor'></view>
+      <view class="color-item" style='background-color: #ffd118;' bindtap='changeColor'></view>
+      <view class="color-item" style='background-color: #a4dc1c;' bindtap='changeColor'></view>
+    </view>
+  </block>
+</view>
+
+<view class="card-list-content" style='{{isHidden ? "height: 700rpx; overflow: hidden;" : ""}}'>
+  <block wx:for='{{cardList}}' wx:key='index'>
+    <view class="card-item">
+      <image mode='widthFix' src='{{item.imageUrl}}'></image>
+      <view>
+        <text>{{item.cardMsg}}</text>
+        <text>{{item.cardType}}</text>
+      </view>
+    </view>
+  </block>
+</view>
+
+<view class="bottom-nav-bar">
+  <block wx:for='{{navList}}' wx:key='index'>
+    <template is='navItem' data='{{...item}}'></template>
+  </block>
+  <view class='nav-item' bindtap='makeCard'>
+    <image mode='heightFix' src='../assets/userImg.png'></image>
+    <text> 在线制作 </text>
+  </view>
+</view>

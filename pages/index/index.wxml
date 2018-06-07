@@ -1,0 +1,161 @@
+<import src='../templates/template.wxml' />
+
+<template is='searchBar'></template>
+
+<view class="content">
+
+  <view class="banner">
+    <swiper
+      indicator-dots='{{true}}'
+      indicator-active-color='{{"#007aff"}}'
+      autoplay='{{true}}'
+      interval='{{5000}}'
+      circular='{{true}}'
+      vertical='{{false}}'
+      style='height: {{bannerHeight}}px'
+    >
+      <block wx:for='{{bannerList}}' wx:key='index'>
+        <swiper-item>
+          <navigator url='{{item.url}}'><image mode='widthFix' src='{{item.imageUrl}}'></image></navigator>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <view class="nav-card-list">
+    <block wx:for='{{navCardList}}' wx:key='index'>
+      <template is='navItem' data='{{...item}}'></template>
+    </block>
+  </view>
+
+  <view class="card-content">
+
+    <view class="card-text">
+      <text>——最新推荐——</text>
+      <text>一大波漂亮模板前来报到</text>
+    </view>
+
+    <view class="card-list">
+      <block wx:for='{{newCardList}}' wx:key='index'>
+        <view class="card-item" bindtap='navigateToDetail' id='{{item.id}}'>
+          <image mode='widthFix' src='{{item.path}}'></image>
+          <view>
+            <text>{{item.title}}</text>
+            <text>{{item.price}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <block wx:for='{{cardTypeList}}' wx:for-item='item' wx:key='index'>
+      <view class="card-block">
+        <view class="card-title">
+          <text>{{item.tname}}</text>
+          <navigator url='../list/list?id={{item.tid}}'>全部<text class="iconfont icon-ARROW"></text></navigator>
+        </view>
+        <view class="card-list">
+          <block wx:for='{{item.list}}' wx:for-item='cell' wx:key='cellindex'>
+            <view class="card-item" bindtap='navigateToDetail' id='{{cell.id}}'>
+              <image mode='widthFix' src='{{cell.path}}'></image>
+              <view>
+                <text>{{cell.title}}</text>
+                <text>{{cell.price}}</text>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+
+    <!-- <view class="card-block">
+      <view class="card-title">
+        <text>新婚请柬</text>
+        <navigator url='../list/list?id=wedding'>全部<text class="iconfont icon-ARROW"></text></navigator>
+      </view>
+      <view class="card-list">
+        <block wx:for='{{cardList}}' wx:key='index'>
+          <view class="card-item" bindtap='navigateToDetail' id='{{item.id}}'>
+            <image mode='widthFix' src='{{item.imageUrl}}'></image>
+            <view>
+              <text>{{item.cardMsg}}</text>
+              <text>{{item.cardType}}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    
+    <view class="card-block">
+      <view class="card-title">
+        <text>生日请柬</text>
+        <navigator url='../list/list?id=birthday'>全部<text class="iconfont icon-ARROW"></text></navigator>
+      </view>
+      <view class="card-list">
+        <block wx:for='{{cardList}}' wx:key='index'>
+          <view class="card-item" bindtap='navigateToDetail' id='{{item.id}}'>
+            <image mode='widthFix' src='{{item.imageUrl}}'></image>
+            <view>
+              <text>{{item.cardMsg}}</text>
+              <text>{{item.cardType}}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    
+    <view class="card-block">
+      <view class="card-title">
+        <text>商业邀请</text>
+        <navigator url='../list/list?id=business'>全部<text class="iconfont icon-ARROW"></text></navigator>
+      </view>
+      <view class="card-list">
+        <block wx:for='{{cardList}}' wx:key='index'>
+          <view class="card-item" bindtap='navigateToDetail' id='{{item.id}}'>
+            <image mode='widthFix' src='{{item.imageUrl}}'></image>
+            <view>
+              <text>{{item.cardMsg}}</text>
+              <text>{{item.cardType}}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    
+    <view class="card-block">
+      <view class="card-title">
+        <text>节日庆祝</text>
+        <navigator url='../list/list?id=holiday'>全部<text class="iconfont icon-ARROW"></text></navigator>
+      </view>
+      <view class="card-list">
+        <block wx:for='{{cardList}}' wx:key='index'>
+          <view class="card-item" bindtap='navigateToDetail' id='{{item.id}}'>
+            <image mode='widthFix' src='{{item.imageUrl}}'></image>
+            <view>
+              <text>{{item.cardMsg}}</text>
+              <text>{{item.cardType}}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view> -->
+
+  </view>
+
+</view>
+
+<view class="bottom-nav-bar">
+  <block wx:for='{{navList}}' wx:key='index'>
+    <template is='navItem' data='{{...item}}'></template>
+  </block>
+  <view class='nav-item' bindtap='makeCard'>
+    <image mode='heightFix' src='../assets/userImg.png'></image>
+    <text> 在线制作 </text>
+  </view>
+</view>
+
+<block wx:if='{{isMake}}'>
+  <view class="scan-code">
+    <view class="shadow" bindtap='closeShadow'></view>
+    <view class="code"><image src='../assets/ewm.png' mode='widthFix' bindlongpress='checkCode'></image></view>
+  </view>
+</block>

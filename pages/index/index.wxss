@@ -1,0 +1,43 @@
+@import '../templates/template.wxss';
+@import '../iconfont/iconfont.wxss';
+
+page{ margin: 0; background: #f3f5f6; }
+
+
+
+.top-back{ display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 10; margin-right: 15rpx; color: #fff; background: none; }
+.arrow{ display:inline-block; position: relative; width:20rpx; height:40rpx; }
+/* .arrow span:first-child{ position: absolute; top: 14rpx; left: 0; background: #fff; width: 20rpx; height: 4rpx; transform: rotate(135deg); }
+.arrow span:last-child{ position: absolute; bottom: 10rpx; left: 0; background: #fff; width: 20rpx; height: 4rpx; transform: rotate(45deg); } */
+.arrow:after{ content: ' '; position: absolute; top: 14rpx; left: 0; background: #fff; width: 20rpx; height: 4rpx; transform: rotate(135deg); }
+.arrow:before{ content: ' '; position: absolute; bottom: 10rpx; left: 0; background: #fff; width: 20rpx; height: 4rpx; transform: rotate(45deg); }
+.reserve{ transform: rotate(180deg); }
+
+
+
+.content{ margin: 80rpx auto 0; width: 100%; }
+.banner{ width: 100%; }
+.banner image{ display: block; width: 100%; }
+.nav-card-list{ display: flex; justify-content: space-between; align-items: center; height: 120rpx; background: #fff; }
+
+.card-content{ margin-top: 20rpx; padding-bottom: 140rpx; }
+.card-text{ width: 100%; text-align: center; background: #fff; }
+.card-text text:last-child{ display: block; padding: 5px 0; font-size: 12px; color: #888; }
+
+.card-list{ display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding: 0 20rpx 6rpx; background: #fff; }
+.card-item{ position: relative; width: 31%; margin: 10rpx 0 0; }
+.card-block{ margin: 20rpx auto 0; background: #fff; }
+.card-title{ display: flex; justify-content: space-between; align-items: center; padding: 20rpx 20rpx 0; font-size: 16px; }
+.card-title navigator{ color: #5fc9bf; font-size: 14px; }
+/*.card-item:last-child{ position: relative; width: 31%; margin-left: 1%; align-self: inherit; }*/
+.card-item image{ width: 100%; }
+.card-item view{ display: flex; justify-content: space-between; align-items: center; position: absolute; bottom: 0; left: 0; width: 100%; height: 45rpx; background: rgba(0, 0, 0, 0.6); color: #fff; }
+.card-item text{ width: 50%; height: 100%; text-align: center; line-height: 45rpx; font-size: 12px; }
+.card-item text:first-child{ text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+
+.bottom-nav-bar{ display: flex; justify-content: space-between; align-items: center; position: fixed; bottom: 0; left: 0; width: 100%; height: 120rpx; border-top: 1rpx solid #ccc; background: #fff; }
+
+.scan-code{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; }
+.shadow{ position: absolute; top: 0; left: 0; z-index: 10; width: 100%; height: 100%; background: #000; opacity: 0.6; }
+.code{ position: absolute; top: 260rpx; left: 245rpx; z-index: 100; width: 260rpx; height: 260rpx; }
+.code image{ display: block; width: 100%; height: 100%; }

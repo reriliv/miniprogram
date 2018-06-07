@@ -1,0 +1,27 @@
+@import '../templates/template.wxss';
+@import '../iconfont/iconfont.wxss';
+
+page{ margin: 0; background: #f3f5f6; }
+
+.header{ position: relative; margin-top: 80rpx; width: 100%; }
+.banner{ margin: 80rpx auto 0; width: 100%; }
+.banner image{ display: block; width: 100%; }
+.card-nav-list{ display: flex; justify-content: center; align-items: center; height: 72rpx; background: #f3f5f6; }
+.card-nav-item{ width: 20%; font-size: 16px; text-align: center; line-height: 70rpx; border-bottom: 2rpx solid transparent; }
+.active{ border-bottom: 2rpx solid #ff0000; }
+.card-sort{ display: flex; justify-content: space-between; align-items: center; }
+.sort-item{ width: 50%; text-align: center; line-height: 80rpx; background: #fff; border-right: 1rpx solid #aaa; font-size: 16px; color: #000; }
+.sort-item:last-child{ border-right: 0; }
+
+.sort-panel{ position: absolute; left: 0; top: 336rpx; z-index: 100; width: 100%; border-top: 1rpx solid #aaa; }
+.shadow{ position: absolute; top: 0; left: 0; z-index: 99; width: 100%; background: rgba(0, 0, 0, 0.6); height:760rpx; }
+.sort-list{ position: relative; z-index: 100; padding: 0 30rpx; background: #fff; }
+.sort-child{ height: 78rpx; line-height: 78rpx; border-bottom: 2rpx solid #ddd; font-size: 16px; color: #333; }
+
+.card-list-content{ display: flex; justify-content: flex-start; flex-wrap: wrap; align-items: center; margin: 0 1% 130rpx; width: 99%; }
+.card-item{ position: relative; margin: 15rpx 0 0; width: 50%; text-align: center; }
+.card-item image{ display: inline-block; width: 336rpx; }
+.card-item view{ display: flex; justify-content: space-between; align-items: center; position: absolute; bottom: 0; left: 14rpx; width: 336rpx; height: 40rpx; }
+.card-item text{ width: 50%; height: 100%; text-align: center; line-height: 40rpx; background: rgba(0, 0, 0, 0.6); color: #fff; font-size: 16px; white-space:nowrap; text-overflow: ellipsis; overflow: hidden; }
+
+.bottom-nav-bar{ display: flex; justify-content: space-between; align-items: center; position: fixed; bottom: 0; left: 0; z-index: 99999999; width: 100%; height: 120rpx; border-top: 1rpx solid #ccc; background: #fff; }
