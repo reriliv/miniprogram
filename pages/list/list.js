@@ -50,8 +50,22 @@ let _this;
   }
 };*/
 
+const fetchData = (key, data) => {
+  wx.request({
+    url: url'https://www.xitieba.com/wxCard',
+    data: data,
+    success: function(res){
+      console.log(res);
+    },
+    fail: function(err){
+      console.log(err)
+    }
+  });
+};
+
 Page({
   data: {
+    page: 1,
     cardNavList: [
       {id: 'all', text: '全部'},
       {id: 'wedding', text: '结婚请柬'},
@@ -89,6 +103,13 @@ Page({
     this.setData({
       currentPage: options.key == undefined ? 'all': options.key
     });
+    let page = this.data.page;
+    const data = {
+      page: page,
+      pageSize: 6,
+      cid: options.key
+    };
+    fetchData(options.key, url, data,);
     // changeCard(options.key);
   },
   changeCardList: function(e) {
