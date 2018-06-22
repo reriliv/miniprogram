@@ -1,19 +1,9 @@
 Page({
     data: {
         list: [
-        	{imageUrl: '../assets/case_01.jpg'},
-          {imageUrl: '../assets/case_02.jpg'},
-          {imageUrl: '../assets/case_03.jpg'},
-          {imageUrl: '../assets/case_04.jpg'},
-          {imageUrl: '../assets/case_05.jpg'},
-          {imageUrl: '../assets/case_06.jpg'},
-          {imageUrl: '../assets/case_07.jpg'},
-          {imageUrl: '../assets/case_08.jpg'},
-          {imageUrl: '../assets/case_09.jpg'},
-          {imageUrl: '../assets/case_10.jpg'},
-          {imageUrl: '../assets/case_11.jpg'},
-          {imageUrl: '../assets/case_12.jpg'},
-          {imageUrl: '../assets/case_13.jpg'},
+          {imageUrl: '../assets/bussiness_background_01.jpg'},
+          {imageUrl: '../assets/bussiness_background_02.jpg'},
+        	{imageUrl: '../assets/bussiness_background_03.jpg'},
         ],
       isMake: false
     },
@@ -30,5 +20,12 @@ Page({
       this.setData({
         isMake: false
       });
+    },
+    onShareAppMessage: function(res){
+      console.log(res);
+      return {
+        title: '喜帖吧电子请柬',
+        path: '/pages/bussiness/bussiness',
+      };
     },
 });

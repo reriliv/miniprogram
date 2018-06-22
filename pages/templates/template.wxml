@@ -8,19 +8,62 @@
       </span>
       <text> 首页 </text>
     </navigator> -->
-    <view class="search-bar">
+    <view class="search-bar" bindtap='focusSearchAction'>
       <image mode='widthFix' src='../assets/sousuo.png'></image>
-      <input type="text"/>
+      <!-- <input type="text" bindfocus='focusSearchAction' bindconfirm='searchCardAction' /> -->
     </view>
-    <navigator url='../article/article' class='top-msg'>
+    <!-- <navigator url='../article/article' class='top-msg'>
       <image mode='widthFix' src='../assets/MSG.png'></image>
-    </navigator>
+    </navigator> -->
   </view>
 </template>
+
+<!-- <template name='focusSearchBar'>
+  <view class="search-content">
+    <view class="search-card-bar">
+      <input
+        type="text"
+        bindconfirm='searchCardAction'
+        placeholder='搜索你喜欢的'
+        focus='{{true}}'
+        value='{{searchText}}'
+      />
+      <view bindtap='cancelSearchAction'> 取消 </view>
+    </view>
+    <view>{{searchText}}</view>
+    <view class="search-list">
+      <block wx:for='{{searchList}}' wx:key='index'>
+        <view class="search-item" bindtap='searchCardAction' id='{{item.id}}'>{{item.msg}}</view>
+      </block>
+    </view>
+  </view>
+</template>
+
+<template name='searchCardItem'>
+  <view class="search-card-item"></view>
+</template> -->
 
 <template name='navItem'>
   <navigator url='{{NavUrl}}' class='nav-item'>
     <image mode='heightFix' src='{{ImgUrl}}'></image>
     <text> {{NavName}} </text>
   </navigator>
+</template>
+
+<template name='tips-message'>
+  <view class="scan-code">
+      <view class="code-shadow" bindtap='closeShadow'></view>
+      <view class="message-arrow"><image src='../assets/message_arrow@2x.png' mode='widthFix'></image></view>
+      <view class="message-content"><image src='../assets/message_image.png' mode='widthFix'></image></view>
+      <!-- <view class="code">
+        <view class="image-content">
+          <view>点击图片 > 保存二维码 > 微信扫码识别</view>
+          <view bindtap='previewCodeAction'><image src='../assets/ewm.png' mode='widthFix' bindlongpress='checkCode'></image></view>
+        </view>
+        <view class="name-content">
+          <view>或搜索微信公众号“喜帖吧电子请柬”关注</view>
+          <view class="copy-name" bindtap='copyNumberAction'> 复制微信公众号 </view>
+        </view>
+      </view> -->
+    </view>
 </template>

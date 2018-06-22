@@ -1,72 +1,274 @@
 <import src='../templates/template.wxml' />
 
-<template is='searchBar'></template>
+<view class="page" wx:if='{{!isSearch}}'>
 
-<view class="banner">
-  <navigator url='#'><image mode='widthFix' src='../assets/banner15.jpg'></image></navigator>
-</view>
+  <block wx:if='{{isMake}}'>
+    <template is='tips-message'></template>
+  </block>
 
-<view class="card-nav-list">
-  <view class='{{currentPage == "all" ? "card-nav-item active" : "card-nav-item"}}' id='all' bindtap='changeCardList'> 全部 </view>
-  <view class='{{currentPage == "4" ? "card-nav-item active" : "card-nav-item"}}' id='4' bindtap='changeCardList'> 结婚请柬 </view>
-  <view class='{{currentPage == "5" ? "card-nav-item active" : "card-nav-item"}}' id='5' bindtap='changeCardList'> 生日请柬 </view>
-  <view class='{{currentPage == "6" ? "card-nav-item active" : "card-nav-item"}}' id='6' bindtap='changeCardList'> 商业邀请 </view>
-  <view class='{{currentPage == "7" ? "card-nav-item active" : "card-nav-item"}}' id='7' bindtap='changeCardList'> 节日祝福 </view>
-</view>
+  <template is='searchBar'></template>
 
-<view class="card-sort">
-  <view class="sort-item" bindtap='showSortPanel'> 综合排序 <text class='iconfont icon-xiangxiajiantoushixin'></text></view>
-  <view class="sort-item" bindtap='showColorPanel'> 颜色筛选 <text class='iconfont icon-xiangxiajiantoushixin'></text></view>
-</view>
+  <view class="banner">
+    <navigator url='#'><image mode='widthFix' src='../assets/banner15.jpg'></image></navigator>
+  </view>
 
-<view class="sort-panel" wx:if='{{isShow}}'>
-  <view class="shadow" bindtap='closeSortPanel'></view>
-  <block wx:if='{{isSort}}'>
-    <view class="sort-list">
-      <view class="sort-child" bindtap='changeSort' id='default'> 综合排序 </view>
-      <view class="sort-child" bindtap='changeSort' id='default'> 最新推荐 </view>
-      <view class="sort-child" bindtap='changeSort' id='default'> 最受欢迎 </view>
-      <view class="sort-child" bindtap='changeSort' id='default'> 最新发布 </view>
-      <view class="sort-child" bindtap='changeSort' id='default'> 促销特价 </view>
-      <view class="sort-child" bindtap='changeSort' id='default'> 限时免费 </view>
+  <view class="card-nav-list">
+    <view class='{{currentPage === "" ? "card-nav-item active" : "card-nav-item"}}' id='' bindtap='changeCardList'> 全部 </view>
+    <view class='{{currentPage === "xhqj" ? "card-nav-item active" : "card-nav-item"}}' id='xhqj' bindtap='changeCardList'> 结婚请柬 </view>
+    <view class='{{currentPage === "srqj" ? "card-nav-item active" : "card-nav-item"}}' id='srqj' bindtap='changeCardList'> 生日请柬 </view>
+    <view class='{{currentPage === "syyq" ? "card-nav-item active" : "card-nav-item"}}' id='syyq' bindtap='changeCardList'> 商业邀请 </view>
+    <view class='{{currentPage === "jrqz" ? "card-nav-item active" : "card-nav-item"}}' id='jrqz' bindtap='changeCardList'> 节日祝福 </view>
+  </view>
+
+  <view class="card-sort">
+    <view class="sort-item" bindtap='showSortPanel'> {{sortText}} <text class='iconfont icon-xiangxiajiantoushixin'></text></view>
+    <view class="sort-item" bindtap='showColorPanel'> 颜色筛选 <text class='iconfont icon-xiangxiajiantoushixin'></text></view>
+  </view>
+
+  <view class="sort-panel" wx:if='{{isShow}}'>
+    <view class="shadow" bindtap='closeSortPanel'></view>
+    <block wx:if='{{isSort}}'>
+      <!-- <view class="sort-list">
+        <block wx:for='{{sortList}}' wx:key='sortKey'>
+          <view class="sort-child" bindtap='changeSort' id='{{item.id}}'> {{item.sortName}} </view>
+        </block>
+      </view> -->
+      <radio-group class='sort-list' bindchange='radioAction'>
+        <!-- <block wx:for='{{sortList}}' wx:key='sortKey'></block> -->
+
+        <label for="sort1" class="sort-child">
+          <view class='sort-content'>
+            <view > 综合排序 </view>
+            <icon type='success_no_circle' size='18' color='#ff0000' wx:if='{{radio1}}'></icon>
+          </view>
+          <radio value='' id='sort1'></radio>
+        </label>
+
+        <label for="sort2" class="sort-child">
+          <view class='sort-content'>
+            <view > 最新推荐 </view>
+            <icon type='success_no_circle' size='18' color='#ff0000' wx:if='{{radio2}}'></icon>
+          </view>
+          <radio value='128' id='sort2'></radio>
+        </label>
+
+        <label for="sort3" class="sort-child">
+          <view class='sort-content'>
+            <view > 最受欢迎 </view>
+            <icon type='success_no_circle' size='18' color='#ff0000' wx:if='{{radio3}}'></icon>
+          </view>
+          <radio value='popular' id='sort3'></radio>
+        </label>
+
+        <label for="sort4" class="sort-child">
+          <view class='sort-content'>
+            <view > 最新发布 </view>
+            <icon type='success_no_circle' size='18' color='#ff0000' wx:if='{{radio4}}'></icon>
+          </view>
+          <radio value='new' id='sort4'></radio>
+        </label>
+
+        <label for="sort5" class="sort-child">
+          <view class='sort-content'>
+            <view > 促销特价 </view>
+            <icon type='success_no_circle' size='18' color='#ff0000' wx:if='{{radio5}}'></icon>
+          </view>
+          <radio value='8' id='sort5'></radio>
+        </label>
+
+        <label for="sort6" class="sort-child">
+          <view class='sort-content'>
+            <view > 限时免费 </view>
+            <icon type='success_no_circle' size='18' color='#ff0000' wx:if='{{radio6}}'></icon>
+          </view>
+          <radio value='32' id='sort6'></radio>
+        </label>
+
+      </radio-group>
+    </block>
+    <block wx:if='{{isColor}}'>
+      <checkbox-group class="color-list" bindchange='checkboxAction'>
+        <!-- <block wx:for='{{domColorList}}' wx:key='index'>
+          <label for="colorItem-{{index}}" class='color-content'>
+            <checkbox value='colorChecked{{index+1}}' id='colorItem-{{index}}'></checkbox>
+            <view class="color-item" style='background-color: #{{item.color}};'>
+              <icon type='success' size='18' color='#ff0000' wx:if='{{colorChecked+(index+1)}}'></icon>
+            </view>
+          </label>
+        </block> -->
+        <label class='color-content' for="colorItem1" bindtap='checkColorAction1'>
+          <!-- <checkbox value='colorChecked_fff' id='colorItem1'></checkbox> -->
+          <view class="color-item" style='background-color: #ffffff;'>
+            <icon type='success' size='18' color='#ff0000' wx:if='{{colorChecked_fff}}'></icon>
+          </view>
+        </label>
+        <label class='color-content' for="colorItem2" bindtap='checkColorAction2'>
+          <!-- <checkbox value='colorChecked_9B9B9B' id='colorItem2'></checkbox> -->
+          <view class="color-item" style='background-color: #9B9B9B;'>
+            <icon type='success' size='18' color='#ff0000' wx:if='{{colorChecked_9B9B9B}}'></icon>
+          </view>
+        </label>
+        <label class='color-content' for="colorItem3" bindtap='checkColorAction3'>
+          <!-- <checkbox value='colorChecked_000' id='colorItem3'></checkbox> -->
+          <view class="color-item" style='background-color: #000000;'>
+            <icon type='success' size='18' color='#ff0000' wx:if='{{colorChecked_000}}'></icon>
+          </view>
+        </label>
+        <label class='color-content' for="colorItem4" bindtap='checkColorAction4'>
+          <!-- <checkbox value='colorChecked_0F67FF' id='colorItem4'></checkbox> -->
+          <view class="color-item" style='background-color: #0f67ff;'>
+            <icon type='success' size='18' color='#ff0000' wx:if='{{colorChecked_0F67FF}}'></icon>
+          </view>
+        </label>
+        <label class='color-content' for="colorItem5" bindtap='checkColorAction5'>
+          <!-- <checkbox value='colorChecked_1E00FB' id='colorItem5'></checkbox> -->
+          <view class="color-item" style='background-color: #1e00fb;'>
+            <icon type='success' size='18' color='#ff0000' wx:if='{{colorChecked_1E00FB}}'></icon>
+          </view>
+        </label>
+        <label class='color-content' for="colorItem6" bindtap='checkColorAction6'>
+          <!-- <checkbox value='colorChecked_0DD1FF' id='colorItem6'></checkbox> -->
+          <view class="color-item" style='background-color: #0dd1ff;'>
+            <icon type='success' size='18' color='#ff0000' wx:if='{{colorChecked_0DD1FF}}'></icon>
+          </view>
+        </label>
+        <label class='color-content' for="colorItem7" bindtap='checkColorAction7'>
+          <!-- <checkbox value='colorChecked_7000FB' id='colorItem7'></checkbox> -->
+          <view class="color-item" style='background-color: #7000fb;'>
+            <icon type='success' size='18' color='#ff0000' wx:if='{{colorChecked_7000FB}}'></icon>
+          </view>
+        </label>
+        <label class='color-content' for="colorItem8" bindtap='checkColorAction8'>
+          <!-- <checkbox value='colorChecked_DD1690' id='colorItem8'></checkbox> -->
+          <view class="color-item" style='background-color: #dd1690;'>
+            <icon type='success' size='18' color='#ff0000' wx:if='{{colorChecked_DD1690}}'></icon>
+          </view>
+        </label>
+        <label class='color-content' for="colorItem9" bindtap='checkColorAction9'>
+          <!-- <checkbox value='colorChecked_FF3D05' id='colorItem9'></checkbox> -->
+          <view class="color-item" style='background-color: #ff3d05;'>
+            <icon type='success' size='18' color='#ff0000' wx:if='{{colorChecked_FF3D05}}'></icon>
+          </view>
+        </label>
+        <label class='color-content' for="colorItem10" bindtap='checkColorAction10'>
+          <!-- <checkbox value='colorChecked_FF9E0A' id='colorItem10'></checkbox> -->
+          <view class="color-item" style='background-color: #ff9e0a;'>
+            <icon type='success' size='18' color='#ff0000' wx:if='{{colorChecked_FF9E0A}}'></icon>
+          </view>
+        </label>
+        <label class='color-content' for="colorItem11" bindtap='checkColorAction11'>
+          <!-- <checkbox value='colorChecked_FFD118' id='colorItem11'></checkbox> -->
+          <view class="color-item" style='background-color: #ffd118;'>
+            <icon type='success' size='18' color='#ff0000' wx:if='{{colorChecked_FFD118}}'></icon>
+          </view>
+        </label>
+        <label class='color-content' for="colorItem12" bindtap='checkColorAction12'>
+          <!-- <checkbox value='colorChecked_A4DC1C' id='colorItem12'></checkbox> -->
+          <view class="color-item" style='background-color: #a4dc1c;'>
+            <icon type='success' size='18' color='#ff0000' wx:if='{{colorChecked_A4DC1C}}'></icon>
+          </view>
+        </label>
+      </checkbox-group>
+      <!-- <view class="color-list" bindchange='checkboxAction'>
+        <view class="color-list-mask" wx:if='{{isDisable}}'></view>
+      </view> -->
+    </block>
+  </view>
+
+    <scroll-view
+      class="card-list-content"
+      style='height: {{scrollHeight}}px; {{isHidden ? "overflow: hidden;" : ""}}'
+      scroll-y='{{true}}'
+      bindscrolltolower='loadMoreCard'
+      scroll-into-view='{{currentScroll}}'
+      wx:if='{{!sortPanelShow}}'
+    >
+      <block wx:for='{{cardList}}' wx:key='index'>
+        <navigator class="card-item" url='../detail/detail?key={{item.id}}' id='item{{index+1}}'>
+          <image mode='widthFix' src='{{item.path}}'></image>
+          <view>
+            <text>{{item.title}}</text>
+            <text>{{item.price}}</text>
+          </view>
+        </navigator>
+      </block>
+    </scroll-view>
+
+    <scroll-view
+      class="card-list-content-sort"
+      style='height: {{scrollHeight}}px; {{isHidden ? "overflow: hidden;" : ""}}'
+      scroll-y='{{true}}'
+      bindscrolltolower='loadMoreSortCard'
+      wx:else
+    >
+      <block wx:for='{{sortCardList}}' wx:key='index'>
+        <navigator class="card-item" url='../detail/detail?key={{item.id}}'>
+          <image mode='widthFix' src='{{item.path}}'></image>
+          <view>
+            <text>{{item.title}}</text>
+            <text>{{item.price}}</text>
+          </view>
+        </navigator>
+      </block>
+    </scroll-view>
+
+  <view class="bottom-nav-bar">
+    <navigator class="nav-item" open-type='redirect' url='../list/list?key='>
+      <image mode='heightFix' src='../assets/iphone.png'></image>
+      <text> 电子请柬 </text>
+    </navigator>
+    <block wx:for='{{navList}}' wx:key='index'>
+      <!-- <template is='navItem' data='{{...item}}'></template> -->
+      <navigator url='{{item.NavUrl}}' class='nav-item'>
+        <image mode='heightFix' src='{{item.ImgUrl}}'></image>
+        <text> {{item.NavName}} </text>
+      </navigator>
+    </block>
+    <navigator target='miniProgram' app-id='wxa57272c2e605011a' class='nav-item'>
+      <image mode='heightFix' src='../assets/setImg.png'></image>
+      <text> 结婚工具 </text>
+    </navigator>
+    <view class='nav-item' bindtap='makeCard'>
+      <image mode='heightFix' src='../assets/userImg.png'></image>
+      <text> 在线制作 </text>
     </view>
-  </block>
-  <block wx:if='{{isColor}}'>
-    <view class="color-list">
-      <view class="color-item" style='background-color: #ffffff;' bindtap='changeColor'></view>
-      <view class="color-item" style='background-color: #9b9b9b;' bindtap='changeColor'></view>
-      <view class="color-item" style='background-color: #000000;' bindtap='changeColor'></view>
-      <view class="color-item" style='background-color: #0f67ff;' bindtap='changeColor'></view>
-      <view class="color-item" style='background-color: #1e00fb;' bindtap='changeColor'></view>
-      <view class="color-item" style='background-color: #0dd1ff;' bindtap='changeColor'></view>
-      <view class="color-item" style='background-color: #7000fb;' bindtap='changeColor'></view>
-      <view class="color-item" style='background-color: #dd1690;' bindtap='changeColor'></view>
-      <view class="color-item" style='background-color: #ff3d05;' bindtap='changeColor'></view>
-      <view class="color-item" style='background-color: #ff9e0a;' bindtap='changeColor'></view>
-      <view class="color-item" style='background-color: #ffd118;' bindtap='changeColor'></view>
-      <view class="color-item" style='background-color: #a4dc1c;' bindtap='changeColor'></view>
-    </view>
-  </block>
+  </view>
 </view>
 
-<view class="card-list-content" style='{{isHidden ? "height: 700rpx; overflow: hidden;" : ""}}'>
-  <block wx:for='{{cardList}}' wx:key='index'>
-    <view class="card-item">
-      <image mode='widthFix' src='{{item.imageUrl}}'></image>
-      <view>
-        <text>{{item.cardMsg}}</text>
-        <text>{{item.cardType}}</text>
-      </view>
+<view class="search-content" wx:if='{{isSearch}}'>
+  <view class="search-card-bar">
+    <input
+      type="text"
+      bindconfirm='searchCardAction'
+      placeholder='搜索你喜欢的'
+      focus='{{isSearch}}'
+      value='{{searchText}}'
+      confirm-type='search'
+    />
+    <view bindtap='cancelSearchAction'> 取消 </view>
+  </view>
+  <view class='hot-search'> {{searchMsg}} </view>
+  <view class="search-card-content">
+    <view class="search-list" wx:if='{{!showSearchList}}'>
+      <block wx:for='{{searchKeyList}}' wx:key='index'>
+        <view class="search-item" bindtap='chooseCardAction' id='{{item.key}}'>{{item.key}}</view>
+      </block>
     </view>
-  </block>
-</view>
-
-<view class="bottom-nav-bar">
-  <block wx:for='{{navList}}' wx:key='index'>
-    <template is='navItem' data='{{...item}}'></template>
-  </block>
-  <view class='nav-item' bindtap='makeCard'>
-    <image mode='heightFix' src='../assets/userImg.png'></image>
-    <text> 在线制作 </text>
+    <scroll-view
+      class="search-card-list"
+      scroll-y='{{scrollY}}'
+      wx:if='{{showSearchList}}'
+      bindscrolltolower='getMoreCard'
+    >
+      <block wx:for='{{searchCardList}}' wx:key='index'>
+        <view class="search-card-item" id='{{item.id}}' bindtap='redirectPage'>
+          <image mode='widthFix' src='{{item.path}}'></image>
+          <view>
+            <text> {{item.title}} </text>
+            <text> {{item.price}} </text>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
   </view>
 </view>

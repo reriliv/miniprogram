@@ -1,3 +1,5 @@
+<import src='../templates/template' />
+
 <view class="propagate-content">
   <block wx:for='{{list}}' wx:key='index'>
     <view class="propagate-item"><image mode='widthFix' src='{{item.imageUrl}}'></image></view>
@@ -5,8 +7,5 @@
 </view>
 <view class="consult" bindtap='makeCard'> 点击咨询客服 </view>
 <block wx:if='{{isMake}}'>
-  <view class="scan-code">
-    <view class="shadow" bindtap='closeShadow'></view>
-    <view class="code"><image src='../assets/ewm.png' mode='widthFix'></image></view>
-  </view>
+  <template is='tips-message'></template>
 </block>

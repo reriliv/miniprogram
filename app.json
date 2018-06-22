@@ -13,6 +13,8 @@
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#ed1f2c",
     "navigationBarTitleText": "喜帖吧电子请柬",
-    "navigationBarTextStyle":"#fff"
+    "navigationBarTextStyle":"#fff",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": "60"
   }
 }

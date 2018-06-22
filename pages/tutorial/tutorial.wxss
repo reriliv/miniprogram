@@ -1,0 +1,7 @@
+@import '../templates/template.wxss';
+
+.content{ width: 100%; margin-bottom: 80rpx; }
+.image-item{ width: 100%; }
+.image-item image{ display: block; width: 100%; }
+
+.make-card{ position: fixed; bottom: 0; left: 0; z-index: 100; width: 100%; height: 80rpx; text-align: center; line-height: 80rpx; background: #ff2d2d; color: #fff; font-size: 16px; }

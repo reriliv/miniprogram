@@ -1,3 +1,5 @@
+@import '../templates/template';
+
 .propagate-content{ margin-bottom: 80rpx; width: 100%; }
 .propagate-item{ width: 100%; }
 .propagate-item image{ display: block; width: 100%; }

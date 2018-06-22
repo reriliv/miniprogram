@@ -1,1 +1,12 @@
-<web-view src='https://m.xitieba.com/event_html/newGuideBook'></web-view>
+<import src='../templates/template.wxml' />
+
+<view class="content" style='height: {{isMake ? height + "px; overflow: hidden;" : ""}}'>
+  <block wx:for='{{imageList}}' wx:key='index'>
+    <view class="image-item"><image mode='widthFix' src='{{item.src}}'></image></view>
+  </block>
+</view>
+<view class="make-card" bindtap='makeCard'> 开始制作电子请柬 </view>
+
+<block wx:if='{{isMake}}'>
+  <template is='tips-message'></template>
+</block>
